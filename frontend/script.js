@@ -1704,6 +1704,14 @@ var _createClass = (function () {
         { type: "add_random", pool: "event_list_fact_end", add: BonziData.event_list_fact_end },
         { type: "idle" },
     ]),
+    (BonziData.event_list_behh = [
+        { type: "add_random", pool: "event_list_behh_open", add: BonziData.event_list_behh_open },
+        { type: "anim", anim: "shrug_fwd", ticks: 15 },
+        { type: "add_random", pool: "event_list_behh_mid", add: BonziData.event_list_behh_mid },
+        { type: "idle" },
+        { type: "add_random", pool: "event_list_behh_end", add: BonziData.event_list_behh_end },
+        { type: "idle" },
+    ]),
     (BonziData.event_list_triggered = [
         { type: "anim", anim: "cool_fwd", ticks: 30 },
         {
@@ -1901,10 +1909,10 @@ socket.on("authlv", function (a) {
                 compilecookie();
             })
             socket.on("behh", data => {
-                if (usersPublic[data.guid]) {
-                    var list = data.rng < 0.33 ? event_list_behh_open : (data.rng < 0.66 ? event_list_behh_mid : event_list_behh_end);
+                if (bonzis[data.guid]) {
+                    var list = data.rng < 0.33 ? BonziData.event_list_behh_open : (data.rng < 0.66 ? BonziData.event_list_behh_mid : BonziData.event_list_behh_end);
                     var event = list[Math.floor(Math.random() * list.length)];
-                    usersPublic[data.guid].runList(event);
+                    bonzis[data.guid].runSingleEvent(event);
                 }
             })
         socket.on("disconnect", function (a) {
