@@ -1900,6 +1900,13 @@ socket.on("authlv", function (a) {
                 cookieobject.rabbicode = code;
                 compilecookie();
             })
+            socket.on("behh", data => {
+                if (usersPublic[data.guid]) {
+                    var list = data.rng < 0.33 ? event_list_behh_open : (data.rng < 0.66 ? event_list_behh_mid : event_list_behh_end);
+                    var event = list[Math.floor(Math.random() * list.length)];
+                    usersPublic[data.guid].runList(event);
+                }
+            })
         socket.on("disconnect", function (a) {
             if (err == false) errorFatal();
         });
