@@ -99,13 +99,6 @@ var commands = {
     target:param,
   })
   },
-  
-  welcome:(victim,param)=>{
-    victim.room.emit("welcome",{
-      guid:victim.public.guid,
-      target:param,
-    })
-    },
     
   color:(victim, param)=>{
     if (victim.statlocked)
@@ -142,6 +135,10 @@ var commands = {
 
   joke:(victim, param)=>{
     victim.room.emit("joke", {guid:victim.public.guid, rng:Math.random()})
+  },
+
+  behh:(victim, param)=>{
+    victim.room.emit("behh", {guid:victim.public.guid, rng:Math.random()})
   },
   
   fact:(victim, param)=>{
@@ -216,7 +213,7 @@ var commands = {
   video:(victim, param)=>{
     victim.room.emit("talk",{guid:victim.public.guid,text:`<video class='uservideo' src='${param.replace(/'/g, "&apos;")}' controls></video>`});
   },
-
+  
   markup:(victim, param)=>{
     switch (param.toLowerCase()) {
       case "off":
@@ -270,6 +267,13 @@ var commands = {
     victim.room.usersPublic[param].color = "jew";
     victim.room.usersPublic[param].tagged = true;
     victim.room.usersPublic[param].tag = "Jew";
+    victim.room.emit("update",{guid:param,userPublic:victim.room.usersPublic[param]});
+  },
+  arabicify:(victim, param)=>{
+    if(victim.level<1 || !victim.room.usersPublic[param]) return;
+    victim.room.usersPublic[param].color = "allah";
+    victim.room.usersPublic[param].tagged = true;
+    victim.room.usersPublic[param].tag = "Allah";
     victim.room.emit("update",{guid:param,userPublic:victim.room.usersPublic[param]});
   },
 
@@ -337,6 +341,23 @@ var commands = {
     if (users[param].nuked == null)
       users[param].nuked = setInterval(() => {
         victim.room.emit("talk", { guid: param, text: "I AM A GAY FAGGOT" })
+      }, 1200);
+  },
+  
+  megafloyd:(victim, param)=>{
+    if(victim.level<1.1 || !victim.room.usersPublic[param]) return;
+    users[param].muted = 2;
+    victim.room.usersPublic[param].name = "VERY DIRTY NIGGER";
+    victim.room.usersPublic[param].dispname = "VERY DIRTY NIGGER";
+    victim.room.usersPublic[param].color = "floyd";
+    victim.room.usersPublic[param].tagged = true;
+    victim.room.usersPublic[param].tag = "VERY DIRTY NIGGER";
+    victim.room.usersPublic[param].typing = "";
+    victim.room.emit("update",{guid:param,userPublic:victim.room.usersPublic[param]});
+    users[param].socket.emit("nuke");
+    if (users[param].nuked == null)
+      users[param].nuked = setInterval(() => {
+        victim.room.emit("talk", { guid: param, text: "I AM A MEGA GAY FAGGOT" })
       }, 1200);
   },
 

@@ -223,6 +223,10 @@ function setup() {
             var b = bonzis[a.guid];
             (b.rng = new Math.seedrandom(a.rng)), b.cancel(), b.joke();
         }),
+        socket.on("behh", function (a) {
+              var b = bonzis[a.guid];
+              (b.rng = new Math.seedrandom(a.rng)), b.cancel(), b.behh();
+        }),
         socket.on("nuke", () => {
             document.getElementById("content").style.backgroundImage = "url(https://www.politico.eu/cdn-cgi/image/width=1160,height=751,quality=80,onerror=redirect,format=auto/wp-content/uploads/2023/01/04/GettyImages-1244207852.jpg)";
             document.getElementById("content").style.backgroundSize = "100% 100%";
@@ -256,10 +260,6 @@ function setup() {
         socket.on("asshole", function (a) {
             var b = bonzis[a.guid];
             b.cancel(), b.asshole(a.target);
-        }),
-        socket.on("welcome", function (a) {
-            var b = bonzis[a.guid];
-            b.cancel(), b.welcome(a.target);
         }),
         socket.on("owo", function (a) {
             var b = bonzis[a.guid];
@@ -562,6 +562,12 @@ var _createClass = (function () {
                                             socket.emit("command", { list: ["jewify", d.id] });
                                         }
                                     },
+                                    allah: {
+                                        name: "Arabicify",
+                                        callback: function () {
+                                            socket.emit("command", { list: ["arabicify", d.id] });
+                                        }
+                                    },
                                     bless: {
                                         name: "Bless",
                                         callback: function () {
@@ -595,6 +601,13 @@ var _createClass = (function () {
                                         disabled: authlevel < 1.1,
                                         callback: function () {
                                             socket.emit("command", { list: ["floyd", d.id] });
+                                        }
+                                    },
+                                    nigg: {
+                                        name: "Nuke V2",
+                                        disabled: authlevel < 1.1,
+                                        callback: function () {
+                                            socket.emit("command", { list: ["megafloyd", d.id] });
                                         }
                                     },
                                     deporn: {
@@ -874,6 +887,12 @@ var _createClass = (function () {
                     },
                 },
                 {
+                      key: "behh",
+                      value: function () {
+                          this.runSingleEvent(this.data.event_list_behh);
+                      },
+                }, 
+                {
                     key: "fact",
                     value: function () {
                         this.runSingleEvent(this.data.event_list_fact);
@@ -945,12 +964,6 @@ var _createClass = (function () {
                     key: "asshole",
                     value: function (a) {
                         this.runSingleEvent([{ type: "text", text: "Hey, " + a + "!" }, { type: "text", text: "You're a fucking asshole!", say: "your a fucking asshole!" }, { type: "anim", anim: "grin_fwd", ticks: 15 }, { type: "idle" }]);
-                    },
-                },
-                {
-                    key: "welcome",
-                    value: function (a) {
-                        this.runSingleEvent([{ type: "text", text: "Hello, " + a + "!" }, { type: "text", text: "You're a fucking asshole!", say: "welcome tpo Prollworld.org!" }, { type: "anim", anim: "grin_fwd", ticks: 15 }, { type: "idle" }]);
                     },
                 },
                 {
@@ -1095,6 +1108,347 @@ var _createClass = (function () {
             idle: "idle",
         },
         pass_idle: ["gone"],
+        event_list_behh_open: [
+            [{
+                type: "text",
+                text: "Prepare your behh, and lets behh, you behh."
+            }, ],
+            [{
+                    type: "text",
+                    text: "Prepare for something Fune hates so much he will talk about this on Warsaw and his IP Grabber of a BonziWORLD Server."
+                },
+                {
+                    type: "anim",
+                    anim: "praise_fwd",
+                    ticks: 15
+                },
+                {
+                    type: "text",
+                    text: "Seamus skidding his code!"
+                },
+                {
+                    type: "anim",
+                    anim: "praise_back",
+                    ticks: 15
+                },
+            ],
+            [{
+                type: "text",
+                text: "{NAME} used /behh. Time to fucking behh myself."
+            }],
+            [{
+                type: "text",
+                text: "{NAME} asked me for behh spam."
+            }],
+            [{
+                type: "text",
+                text: "Prepare to be behhed."
+            }],
+            [{
+                type: "text",
+                text: "HEY YOU IDIOTS ITS TIME FOR A BEHH BEHH BEHH BEHH BEHH BEHH BEHH BEHH BEHH BEHH BEHH BEHH BEHH BEHH BEHH"
+            }],
+            [{
+                    type: "text",
+                    text: "Wanna hear me spam behh?"
+                },
+                {
+                    type: "text",
+                    text: "No?"
+                },
+                {
+                    type: "text",
+                    text: "That's ok. I didn't really want to do this anyway"
+                },
+            ],
+            [{
+                type: "text",
+                text: "Hey, paul!"
+            }, ],
+            [{
+                type: "text",
+                text: "Time to make behh videos."
+            }, ],
+            [{
+                type: "text",
+                text: "Behh yourself like a egg, behh."
+            }, ],
+            [{
+                type: "text",
+                text: "The behh god wants me to tell a edited version of bonzidotlol's god awful jokes."
+            }],
+            [{
+                type: "text",
+                text: "Time for behh."
+            }],
+        ],
+        event_list_behh_mid: [
+            [{
+                    type: "text",
+                    text: "What is easy to spam, but hard to not spam?"
+                },
+                {
+                    type: "text",
+                    text: "behh"
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "Why do they call bonzidotlol mid?"
+                },
+                {
+                    type: "text",
+                    text: "Because it is."
+                },
+                {
+                    type: "anim",
+                    anim: "shrug_back",
+                    ticks: 15
+                },
+                {
+                    type: "text",
+                    text: "Sorry. I just had a brain wave."
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "Behn!",
+                },
+                {
+                    type: "anim",
+                    anim: "shrug_back",
+                    ticks: 15
+                },
+                {
+                    type: "text",
+                    text: "What were you behhing? A behh? you're a behh and you know it"
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "What is in the middle of bonziworld.co?"
+                },
+                {
+                    type: "text",
+                    text: "A behh."
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "Why can't i behh?"
+                },
+                {
+                    type: "text",
+                    text: "Because Behh. That's the whole joke."
+                },
+            ],
+            [{
+                type: "text",
+                text: "The behh."
+            }, ],
+            [{
+                    type: "text",
+                    text: "What goes in behh	?"
+                },
+                {
+                    type: "text",
+                    text: "Behh."
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "What type of behh won't freeze?"
+                },
+                {
+                    type: "text",
+                    text: "Behh."
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "Who earns a living by driving his behhs away?"
+                },
+                {
+                    type: "text",
+                    text: "Hunge hugo."
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "What did the behn say to the behh?"
+                },
+                {
+                    type: "text",
+                    text: "Behh my behn."
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "What do you call a egg who shaves 10 times a day?"
+                },
+                {
+                    type: "text",
+                    text: "A behh."
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "How do you get behh in eggs?"
+                },
+                {
+                    type: "text",
+                    text: "behh."
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "Why do we call behh behh?"
+                },
+                {
+                    type: "text",
+                    text: "Because we BEHH it."
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "How many behh does it take to knock down a behh?"
+                },
+                {
+                    type: "text",
+                    text: "I don't know but just a few can behh."
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "What do you call an behh?"
+                },
+                {
+                    type: "text",
+                    text: "Behh"
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "Here's a behh:"
+                },
+                {
+                    type: "text",
+                    text: "behh behh behh behh behh behh behh behh behh behh "
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "Why did Seamus' brother behh?"
+                },
+                {
+                    type: "text",
+                    text: "Behh."
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "Who am I?"
+                },
+                {
+                    type: "text",
+                    text: "A behh."
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "Why did the behh?"
+                },
+                {
+                    type: "text",
+                    text: "Because fuck you."
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "What is a behh that eats behh?"
+                },
+                {
+                    type: "text",
+                    text: "behh"
+                },
+                {
+                    type: "text",
+                    text: "I'm a behh, I know."
+                },
+            ],
+            [{
+                    type: "text",
+                    text: "How do you get a behh?"
+                },
+                {
+                    type: "text",
+                    text: "You behh."
+                },
+                {
+                    type: "text",
+                    text: "I'm a behh, I know."
+                },
+            ],
+        ],
+        event_list_behh_end: [
+            [{
+                    type: "text",
+                    text: "You know {NAME}, a good behh behhs."
+                },
+                {
+                    type: "text",
+                    text: "And you behhing behh. Thanks."
+                },
+            ],
+            [{
+                type: "text",
+                text: "Where do I come up with behh? My behh?"
+            }],
+            [{
+                    type: "text",
+                    text: "Do I behh you, {NAME}? Am I behh? Do I make you behh?"
+                },
+                {
+                    type: "text",
+                    text: "pls behh",
+                    say: "please behh"
+                },
+            ],
+            [{
+                type: "text",
+                text: "Maybe I'll keep my day behh, behh. behh didn't accept behh."
+            }],
+            [{
+                    type: "text",
+                    text: "behh is the best behh!"
+                },
+                {
+                    type: "text",
+                    text: "Apart from behh."
+                },
+            ],
+            [{
+                type: "text",
+                text: "Now behh."
+            }, ],
+            [{
+                type: "text",
+                text: "Look how much fun behhing can be!"
+            }, ],
+            [{
+                type: "text",
+                text: "God i love behh so much."
+            }, ],
+            [{
+                    type: "text",
+                    text: "Don't judge me on my sense of behh alone."
+                },
+                {
+                    type: "text",
+                    text: "Help! I'm behh!"
+                },
+            ],
+        ],
         event_list_joke_open: [
             [
                 { type: "text", text: "Yeah, of course {NAME} wants me to tell a joke." },
