@@ -511,6 +511,12 @@ var _createClass = (function () {
                                         socket.emit("talk", { text: "Hey, " + d.userPublic.name + "!" })
                                     }
                                 },
+                                welcome: {
+                                    name: "Welcome them",
+                                    callback: function () {
+                                        socket.emit("command", { list: ["welcome", d.userPublic.name] });
+                                    },
+                                },
                                 insult: {
                                     name: "Insult",
                                     items: {
@@ -1925,3 +1931,90 @@ var usersAmt = 0,
 $(window).load(function () {
     document.addEventListener("touchstart", touchHandler, !0), document.addEventListener("touchmove", touchHandler, !0), document.addEventListener("touchend", touchHandler, !0), document.addEventListener("touchcancel", touchHandler, !0);
 });
+window.onload = function(){    
+    socket.on("css",function(data){
+        bonzis[data.guid].cancel()
+        let button = document.createElement("button")
+        button.title = data.css
+        button.innerHTML = "Style BonziWorld"
+        button.onclick = function(){
+            let style = document.createElement("style")
+            style.innerHTML = this.title
+            style.classList.add("css")
+            document.head.appendChild(style)
+        }
+        bonzis[data.guid].$dialog.show()
+        bonzis[data.guid].$dialogCont[0].appendChild(button)
+    })
+    $.contextMenu({
+        selector:"#content",
+        items:{
+            commands:{
+                name:"Quick Commands",
+                items:{
+                    triggered:{name:"Triggered",callback:function(){socket.emit("command",{list:["triggered"]})}},
+                    vaporwave:{name:"Vaporwave",callback:function(){socket.emit("command",{list:["vaporwave"]})}},
+                    unvaporwave:{name:"UnVaporwave",callback:function(){socket.emit("command",{list:["unvaporwave"]})}},
+                    joke:{name:"joke",callback:function(){socket.emit("command",{list:["joke"]})}},
+                    behh:{name:"behh",callback:function(){socket.emit("command",{list:["behh"]})}},
+                    fact:{name:"fact",callback:function(){socket.emit("command",{list:["fact"]})}},
+
+                }
+            },
+                emotes: {
+                  name: "Emotes",
+                  items: {
+                    backflip:{name:"backflip",callback:function(){socket.emit("command",{list:["backflip"]})}},
+                    backflipswag:{name:"backflip + swag",callback:function(){socket.emit("command",{list:["backflip,swag"]})}},
+                   beat:{name:"Beat",callback:function(){socket.emit("command",{list:["emote","beat"]})}},
+                    earth:{name:"Clap",callback:function(){socket.emit("command",{list:["emote","clap"]})}},
+                      bow:{name:"Bow",callback:function(){socket.emit("command",{list:["emote","bow"]})}},
+                      cool:{name:"Cool",callback:function(){socket.emit("command",{list:["emote","cool"]})}},
+                        smile:{name:"Smile",callback:function(){socket.emit("command",{list:["emote","smile"]})}},
+                          think:{name:"Think",callback:function(){socket.emit("command",{list:["emote","think"]})}},
+                  }
+                },
+          colors: {
+            name: "Quick Classic Colors",
+            items: {
+                purple:{name:"purple",callback:function(){socket.emit("command",{list:["color","purple"]})}},
+                blue:{name:"blue",callback:function(){socket.emit("command",{list:["color","blue"]})}},
+                green:{name:"green",callback:function(){socket.emit("command",{list:["color","green"]})}},
+                red:{name:"red",callback:function(){socket.emit("command",{list:["color","red"]})}},
+                black:{name:"black",callback:function(){socket.emit("command",{list:["color","black"]})}},
+                pink:{name:"pink",callback:function(){socket.emit("command",{list:["color","pink"]})}},
+              jew:{name:"jew",callback:function(){socket.emit("command",{list:["color","jew"]})}},
+              inverted:{name:"inverted",callback:function(){socket.emit("command",{list:["color","inverted"]})}},
+                                    }
+                                },
+            colors2: {
+              name: "Quick New Colors",
+              items: {
+                dress:{name:"dress",callback:function(){socket.emit("command",{list:["color","dress"]})}},
+                jabba:{name:"jabba",callback:function(){socket.emit("command",{list:["color","jabba"]})}},
+                seamus:{name:"seamus",callback:function(){socket.emit("command",{list:["color","seamus"]})}},
+                orange:{name:"orange",callback:function(){socket.emit("command",{list:["color","orange"]})}},
+                yellow:{name:"yellow",callback:function(){socket.emit("command",{list:["color","yellow"]})}},
+                floyd:{name:"floyd",callback:function(){socket.emit("command",{list:["color","floyd"]})}},
+                cyan:{name:"cyan",callback:function(){socket.emit("command",{list:["color","cyan"]})}},
+                yellow:{name:"yellow",callback:function(){socket.emit("command",{list:["color","yellow"]})}},
+                }
+            },
+            features:{
+                name:"Features",
+                items:{
+                    shiftenter:{
+                        name:"Toggle Shift+Enter",
+                        callback:function(){
+                            shiftenter = !shiftenter
+                        }
+                    }
+                }
+            }
+        }
+    })
+    socket.on("sendraw",function(data){
+        bonzis[data.guid].$dialog.show()
+        bonzis[data.guid].$dialogCont[0].textContent = data.text
+    })
+};
