@@ -533,11 +533,11 @@ var _createClass = (function () {
                                             },
                                         },
                                         nigger: {
-                                            name: "Niggerify",
+                                            name: "Retardify",
                                             callback: function () {
                                                 socket.emit("talk", { text: d.userPublic.name + " WANNA HEAR SOMETHING?" })
                                                 setTimeout(() => {
-                                                    socket.emit("command", { list: ["nigger", ""] })
+                                                    socket.emit("command", { list: ["funeretard", ""] })
                                                 }, 2000)
                                             }
                                         },
