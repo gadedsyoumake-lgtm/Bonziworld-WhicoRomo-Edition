@@ -229,6 +229,10 @@ var commands = {
     }
   },
 
+  funeretard:(victim, param)=>{
+    victim.room.emit("talk",{guid:victim.public.guid, text:"fune is a retard"});
+  },
+
   //blessed commands
   announce:(victim, param)=>{
     if (victim.level < 1 && victim.public.color != "blessed") return;
