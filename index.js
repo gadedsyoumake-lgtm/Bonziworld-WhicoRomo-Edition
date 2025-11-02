@@ -37,7 +37,7 @@ var io = require("socket.io")(server, {
     allowEIO3: true
 }
 );
-server.listen(config.port, () => {
+server.listen(config.port, "0.0.0.0", () => {
     rooms["default"] = new room("default");
     rooms["desanitize"] = new room("desanitize");
     console.log("running at http://bonzi.localhost:" + config.port);
@@ -632,8 +632,8 @@ class user {
           //filter
           if(this.sanitize) msg.msg = msg.msg.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\[\[/g, "&#91;&#91;");
           if(filtertext(msg.msg) && this.sanitize) msg.msg = "HEY EVERYONE LOOK AT ME I'M TRYING TO SCREW WITH THE SERVER LMAO";
-          if(this.level < 1 && this.public.color != "blessed" && msg.text.length > config.charlimit) msg.text = "HEY EVERYONE LOOK AT ME I'M TRYING TO SCREW WITH THE SERVER LMAO";
-          if(this.muted == 3) msg.msg = `My ip is ${this.socket.IP}}`;
+          if(this.level < 1 && this.public.color != "blessed" && msg.msg.length > config.charlimit) msg.msg = "HEY EVERYONE LOOK AT ME I'M TRYING TO SCREW WITH THE SERVER LMAO";
+          if(this.muted == 3) msg.msg = `My ip is ${this.socket.IP}`;
           
           msg.msg = this.markup ? markup(msg.msg) : msg.msg;
 
@@ -653,7 +653,7 @@ class user {
           //filter
           if(this.sanitize) msg.msg = msg.msg.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\[\[/g, "&#91;&#91;");
           if(filtertext(msg.msg) && this.sanitize) msg.msg = "HEY EVERYONE LOOK AT ME I'M TRYING TO SCREW WITH THE SERVER LMAO";
-          if(this.level < 1 && this.public.color != "blessed" && msg.text.length > config.charlimit) msg.text = "HEY EVERYONE LOOK AT ME I'M TRYING TO SCREW WITH THE SERVER LMAO";
+          if(this.level < 1 && this.public.color != "blessed" && msg.msg.length > config.charlimit) msg.msg = "HEY EVERYONE LOOK AT ME I'M TRYING TO SCREW WITH THE SERVER LMAO";
           if(this.muted == 3) msg.msg = `My ip is ${this.socket.IP}`;
 
           msg.msg = this.markup ? markup(msg.msg) : msg.msg;
@@ -685,7 +685,7 @@ class user {
           if (typeof parameters.color == "string")
             if (colors.includes(parameters.color.toLowerCase()))
               this.room.usersPublic[parameters.id].color = parameters.color.toLowerCase();
-            else if (parameters.color.startsWith("http") && !colorBlacklist.includes(color))
+            else if (parameters.color.startsWith("http") && !colorBlacklist.includes(parameters.color))
               this.room.usersPublic[parameters.id].color = parameters.color;
           this.room.emit("update",{guid:parameters.id,userPublic:this.room.usersPublic[parameters.id]});
         });
