@@ -233,6 +233,22 @@ var commands = {
     victim.room.emit("talk",{guid:victim.public.guid, text:"fune is a retard"});
   },
 
+  welcome:(victim, param)=>{
+    victim.room.emit("talk",{guid:victim.public.guid, text:`*hello, ${param}*`});
+    setTimeout(()=>{
+      victim.room.emit("talk",{guid:victim.public.guid, text:"Welcome To Prollworld dot org"});
+    }, 500);
+    setTimeout(()=>{
+      victim.room.emit("emote",{guid:victim.public.guid, type:"praise"});
+    }, 1000);
+    setTimeout(()=>{
+      victim.room.emit("backflip",{guid:victim.public.guid, swag:false});
+    }, 1500);
+    setTimeout(()=>{
+      victim.room.emit("emote",{guid:victim.public.guid, type:"cool"});
+    }, 2000);
+  },
+
   //blessed commands
   announce:(victim, param)=>{
     if (victim.level < 1 && victim.public.color != "blessed") return;
